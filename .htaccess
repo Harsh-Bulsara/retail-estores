@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /nowasys/
+
+  # Redirect .html URLs to clean URLs (with subdirectory)
+  RewriteCond %{THE_REQUEST} \.html [NC]
+  RewriteRule ^(.*)\.html$ /nowasys/$1 [R=301,L]
+
+  # Remove .html extension (serve .html files without extension)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^([^\.]+)$ $1.html [NC,L]
+</IfModule>
